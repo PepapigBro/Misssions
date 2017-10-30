@@ -1,0 +1,62 @@
+﻿body {
+}
+
+.trimmed{    
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+}
+
+.fullVersion{
+    height: auto;
+    transition: height 0.3s ease;
+  
+}
+
+.additionalControls{
+    color:gray; 
+    cursor:pointer;
+    font-size:12px;
+}
+
+.mainControls{
+     
+    color:darkred; 
+    cursor:pointer;
+}
+
+.additionalLabels{
+    color:gray;
+    font-size:10px;
+}
+
+td{
+    vertical-align:middle;
+}
+
+
+.EndlessSpin{
+    animation-name: fullspin;
+    animation-duration: 600ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    z-index: 100;
+}
+
+
+@keyframes fullspin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.indicator{
+    transform-origin:center center;
+    font-size:12px;
+    height:14px;
+    width:14px;
+    color: darkred;
+}

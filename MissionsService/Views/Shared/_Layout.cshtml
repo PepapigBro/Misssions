@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html ng-app="ToDoList">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="~/Content/Main.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/AppController.js"></script>
+    <script src="~/Scripts/AppDirectives.js"></script>
+</head>
+
+<body ng-controller="PageController">
+   
+    <div class="container" >
+
+
+
+        <div style="width:600px">
+            @RenderBody()
+        </div>
+
+
+   
+    @RenderSection("scripts", required: false)
+
+        <div class="modal fade" role="dialog" id="modalCreate" tabindex="-1" >
+            <div class="modal-dialog " role="document" style="width:550px; height: 400px">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="font-size:18px; margin-top:15px; margin-bottom:15px;">
+                        <span id="modalHeader">Создать задачу</span>
+                        <br /><br />
+                        <span style="color:gray; font-size:14px">Имя задачи</span><br />
+                        <input id="newTaskName" class="form-control" maxlength="30" style="font-size:14px; border-radius:0px" placeholder="Введите имя задачи" />
+                        <br />
+                        <div class="form-group">
+                            <span style="color:gray; font-size:14px">Deadline</span><br />
+
+                                                    
+                                <div class="form-group">
+                                    <div class='input-group date' id='deadline' style="width:250px;">
+                                        <input type='text' class="form-control" style="border-radius:0px" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <span style="color:gray; margin-left:10px; font-size:12px; cursor:pointer" ng-click="ClearDeadline()">очистить</span>
+                                    </div>
+                                </div>
+                          
+
+
+
+                        </div>
+                        <br />
+                        <span style="color:gray; font-size:14px">Подробное описание</span><br />
+                        <div id="newTaskDescription" contenteditable="true" style="padding:5px; padding-left:10px; font-size:14px; width:100%; min-height:60px; border-color:lightgray; border-width:1px; border-style: solid;"></div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" style="float:left" ng-click="CreateNewTask()" id="createNewTaskBtn">Создать 
+                            <span class="glyphicon glyphicon-star hidden indicator CreateSaveTaskIndicator"  aria-hidden="true"></span>
+                    </button>
+                        <button type="button" class="btn btn-default" style="float:left" ng-click="EditFieldsTask()" id="editTaskBtn">Сохранить 
+                            <span class="glyphicon glyphicon-star hidden indicator CreateSaveTaskIndicator"  aria-hidden="true"></span>
+                        </button>
+                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal" style="">Закрыть</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+</div>
+
+    
+</body>
+</html>

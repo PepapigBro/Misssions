@@ -1,0 +1,48 @@
+﻿<div style="width:100%; font-size:18px; text-align:center" ng-init="RefreshList()"><span>Список задач</span></div>
+<br/>
+<div style="width:100%; text-align:left; cursor:pointer; margin-bottom:7px; color:darkred" >
+    <span ng-click="ShowModalCreate('Создание задачи')">Добавить задачу</span> &nbsp;
+    <span ng-click="RefreshList()">Обновить <span class="glyphicon glyphicon-star hidden indicator"  aria-hidden="true" id="indicatorList"></span></span>
+    </div>
+
+<table class="table">
+    <tr style="font-weight:bold">
+        <td><div style="width:30px;">#</div></td>
+        <td><div style="width:150px;">Задача</div></td>
+        <td><div style="width:200px;">Детальное описание</div></td>
+        <td><div style="width:150px;">Deadline</div></td>
+        <td><div style="width:100px;">Статус</div></td>
+        <td><div style="width:120px;">Действия</div></td>
+        
+    </tr>
+</table>
+
+<table class="table">
+    
+    <tr ng-repeat="task in UserTaskList">
+        <td><div style="width:30px;">{{$index+1}}</div></td>
+        <td><div style="width:150px;" class="trimmed">{{task.Name}}</div></td>
+        <td><div show-all-content-mouseover style="width:200px;" class="trimmed">{{task.Description==null?"отсутствует":task.Description}}</div></td>
+        <td><div style="width:150px;" class="trimmed">{{task.Deadline==null?"отсутствует": FormatDate(task.Deadline)}}</div></td>
+        <td style="height:50px;"><div style="width:100px;">
+    <div style="position:relative;">
+        <div class="additionalLabels" style="position:absolute; left:0px; top:-10px; padding-bottom:2px;">{{task.isDeferFromInitial==true?"Изменена":""}}</div>
+        {{task.TaskState}}
+        <div class="additionalLabels" style="position:absolute; left:0px; bottom:-14px;padding-bottom:2px;">{{task.DateOfCompletion==null?"":FormatDate(task.DateOfCompletion)}}</div>
+    </div>
+
+                                                           
+</div>
+        </td>
+        <td style="position:relative"><div style="width:120px;">
+            <span class="mainControls" style="margin-right:5px;" ng-click="ChangeState(task, State.Finished, getDateTimeNow())">Выполнить</span> 
+            <span class="additionalControls glyphicon glyphicon-pencil" ng-click="ShowModalCreate('Редактирование задачи', task)"></span>&nbsp;
+            <span class="additionalControls glyphicon glyphicon-off" ng-click="task.TaskState==State.Finished? ChangeState(task,  State.Waiting, null):ChangeState(task,  State.Canceled, null)">
+            </span>
+            </div>
+         
+        </td>
+
+    </tr>
+
+</table>
